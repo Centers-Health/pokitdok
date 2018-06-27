@@ -1,0 +1,3 @@
+python-dotenv
+pokitdok
+Flask
