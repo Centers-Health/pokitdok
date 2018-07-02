@@ -1,15 +1,19 @@
 ''' settings.py '''
 
+import json
 import os
 import pokitdok
 from dotenv import load_dotenv
-from flask import Flask
+from pprint import pprint
 
 ## load environment values from .env
 load_dotenv()
 
 client_id = os.getenv("client_id")
 client_secret = os.getenv("client_secret")
+
+client_id = "nA7Krn6fm9pLSjnMAV03"
+client_secret = "9RbvFMZvO6nQuRZkXxLiQcDKNgDBUGbemIYivkRt"
 
 client_settings = {
     'client_id': client_id,
@@ -36,5 +40,8 @@ member_data = {
 
 # api request to eligibility
 result = pd.request('/eligibility/', method='post', data=member_data)
+pprint(json.dumps(result))
 
-print(result)
+## write result to file
+with open('data/eligibility-reult.json', 'a') as eligibility_file:
+    eligibility_file.write(json.dumps(result))
